@@ -27,6 +27,6 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Compile cpp template
-        run: g++ templates/sol.cpp
+        run: g++ templates/template.cpp
 
 
