@@ -33,20 +33,10 @@ ostream& operator<<(ostream& os, map<K, V> m) {
 
 // ALGOS
 
-int dx[] = {-1, 0, 0, 1};
-int dy[] = {0, 1, -1, 0};
+int dx[] = {-1, 0, 0, 1}, dy[] = {0, 1, -1, 0};
 
-vector<int> mobius(int n) {
-  /**
-   * -1 if prime, 0 if a^2 divides n, (-1)^k if k distinct primes
-   */
-  vector<int> mob(n + 1, 0);
-  mob[1] = 1;
-  for (int i = 1; i <= n; ++i) for (int j = i + i; j <= n; j += i) {
-    mob[j] -= mob[i];
-  }
-  return mob;
-}
+// -1 if prime, 0 if a^2 divides n, (-1)^k if k distinct primes
+vector<int> mobius(int n) { vector<int> mob(n + 1, 0); mob[1] = 1; for (int i = 1; i <= n; ++i) for (int j = i + i; j <= n; j += i) mob[j] -= mob[i]; return mob; }
 
 
 // Go 
@@ -54,7 +44,6 @@ int INF = INT_MAX;
 const ll MOD = 1000000007;
 
 void solve() {
-  cout << mobius(10);
 }
  
  
