@@ -20,10 +20,15 @@ ostream& operator<<(ostream& os, pair<K, V> p) {
   os << "{" << p.first << ", " << p.second << "} ";
   return os;
 }
- 
-void print(int a, int b, vector<bool> v) {
-  if (v[a] and v[b]) return;
-  cout << a  << " " << b  << endl;
+
+template <typename K, typename V>
+ostream& operator<<(ostream& os, map<K, V> m) {
+  cout << "{";
+  for (auto &i: map) {
+    cout << "[" << i.first << ": " << i.second << "]";
+  }
+  cout << "}";
+  return os;
 }
  
 void solve() {
