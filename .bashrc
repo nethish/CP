@@ -98,8 +98,6 @@ alias more=less
 
 xhost +local:root > /dev/null 2>&1
 
-complete -cf sudo
-
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
 # it regains control.  #65623
@@ -138,6 +136,8 @@ ex ()
   fi
 }
 
+# Personal space
+alias tmux="tmux -u"
+alias cpvim="cd /home/nethish/repos/CP/"
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export EDITOR=/bin/vim
-export VISUAL=vim
