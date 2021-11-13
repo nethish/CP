@@ -4,8 +4,8 @@ using namespace std;
 #define ld long double
 #define endl "\n"
 #define debug(x) cout << #x << " = " << (x) << endl;
-int INF = INT_MAX;
-const ll MOD = 1000000007;
+
+// UTIL
  
 template<class T>
 ostream& operator<<(ostream& os, vector<T> v) {
@@ -24,22 +24,45 @@ ostream& operator<<(ostream& os, pair<K, V> p) {
 template <typename K, typename V>
 ostream& operator<<(ostream& os, map<K, V> m) {
   cout << "{";
-  for (auto &i: map) {
+  for (auto i = m.begin(); i != m.end(); ++i) {
     cout << "[" << i.first << ": " << i.second << "]";
   }
   cout << "}";
   return os;
 }
- 
+
+// ALGOS
+
+int dx[] = {-1, 0, 0, 1};
+int dy[] = {0, 1, -1, 0};
+
+vector<int> mobius(int n) {
+  /**
+   * -1 if prime, 0 if a^2 divides n, (-1)^k if k distinct primes
+   */
+  vector<int> mob(n + 1, 0);
+  mob[1] = 1;
+  for (int i = 1; i <= n; ++i) for (int j = i + i; j <= n; j += i) {
+    mob[j] -= mob[i];
+  }
+  return mob;
+}
+
+
+// Go 
+int INF = INT_MAX;
+const ll MOD = 1000000007;
+
 void solve() {
+  cout << mobius(10);
 }
  
  
 int main() {
   ios::sync_with_stdio(false);
-  cin.tie(0); cout.tie(0);
+  // cin.tie(0); cout.tie(0);
  
-  int t;
+  int t = 1;
   cin >> t;
   while (t--) {
     solve();
