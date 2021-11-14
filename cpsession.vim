@@ -2,16 +2,13 @@ let SessionLoad = 1
 if &cp | set nocp | endif
 let s:cpo_save=&cpo
 set cpo&vim
-inoremap <silent> <Plug>(-fzf-complete-finish) l
-inoremap <silent> <Plug>(fzf-maps-i) :call fzf#vim#maps('i', 0)
-inoremap <expr> <Plug>(fzf-complete-buffer-line) fzf#vim#complete#buffer_line()
-inoremap <expr> <Plug>(fzf-complete-line) fzf#vim#complete#line()
-inoremap <expr> <Plug>(fzf-complete-file-ag) fzf#vim#complete#path('ag -l -g ""')
-inoremap <expr> <Plug>(fzf-complete-file) fzf#vim#complete#path("find . -path '*/\.*' -prune -o -type f -print -o -type l -print | sed 's:^..::'")
-inoremap <expr> <Plug>(fzf-complete-path) fzf#vim#complete#path("find . -path '*/\.*' -prune -o -print | sed '1d;s:^..::'")
-inoremap <expr> <Plug>(fzf-complete-word) fzf#vim#complete#word()
-inoremap <silent> <F25> :silent doautocmd <nomodeline> FocusGained %
 inoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %
+inoremap <silent> <F25> :silent doautocmd <nomodeline> FocusGained %
+inoremap <silent> <Plug>(-fzf-complete-finish) l
+imap <Nul> <C-Space>
+inoremap <expr> <Up> pumvisible() ? "\" : "\<Up>"
+inoremap <expr> <S-Tab> pumvisible() ? "\" : "\<S-Tab>"
+inoremap <expr> <Down> pumvisible() ? "\" : "\<Down>"
 imap <silent> <C-_>9 <Plug>TComment_9
 imap <silent> <C-_>8 <Plug>TComment_8
 imap <silent> <C-_>7 <Plug>TComment_7
@@ -66,22 +63,29 @@ inoremap <Plug>TComment_<C-_>p :norm! m`vip:TComment``
 inoremap <Plug>TComment_p :norm! m`vip:TComment``
 inoremap <Plug>TComment_<C-_><C-_> :TComment
 inoremap <Plug>TComment_ :TComment
-nnoremap  :w | !g++ -std=c++14 % -o %:r &> output && ./%:r < ~/repos/CP/input > ~/repos/CP/output && rm ./%:r 
+inoremap <silent> <Plug>(fzf-maps-i) :call fzf#vim#maps('i', 0)
+inoremap <expr> <Plug>(fzf-complete-buffer-line) fzf#vim#complete#buffer_line()
+inoremap <expr> <Plug>(fzf-complete-line) fzf#vim#complete#line()
+inoremap <expr> <Plug>(fzf-complete-file-ag) fzf#vim#complete#path('ag -l -g ""')
+inoremap <expr> <Plug>(fzf-complete-file) fzf#vim#complete#path("find . -path '*/\.*' -prune -o -type f -print -o -type l -print | sed 's:^..::'")
+inoremap <expr> <Plug>(fzf-complete-path) fzf#vim#complete#path("find . -path '*/\.*' -prune -o -print | sed '1d;s:^..::'")
+inoremap <expr> <Plug>(fzf-complete-word) fzf#vim#complete#word()
+nnoremap  :w | !g++ -std=c++14 % -o %:r &> output && ./%:r < input > output && rm ./%:r
 nnoremap  h
 nnoremap 	 
 nnoremap <NL> j
 nnoremap  k
 nnoremap  l
-nmap <silent> 9 <Plug>TComment_9
-nmap <silent> 8 <Plug>TComment_8
-nmap <silent> 7 <Plug>TComment_7
-nmap <silent> 6 <Plug>TComment_6
-nmap <silent> 5 <Plug>TComment_5
-nmap <silent> 4 <Plug>TComment_4
-nmap <silent> 3 <Plug>TComment_3
-nmap <silent> 2 <Plug>TComment_2
-nmap <silent> 1 <Plug>TComment_1
 nmap <silent>  <Plug>TComment_
+nmap <silent> 1 <Plug>TComment_1
+nmap <silent> 2 <Plug>TComment_2
+nmap <silent> 3 <Plug>TComment_3
+nmap <silent> 4 <Plug>TComment_4
+nmap <silent> 5 <Plug>TComment_5
+nmap <silent> 6 <Plug>TComment_6
+nmap <silent> 7 <Plug>TComment_7
+nmap <silent> 8 <Plug>TComment_8
+nmap <silent> 9 <Plug>TComment_9
 vmap <silent> 9 <Plug>TComment_9
 omap <silent> 9 <Plug>TComment_9
 vmap <silent> 8 <Plug>TComment_8
@@ -112,11 +116,17 @@ map <silent>   <Plug>TComment_
 map <silent> p <Plug>TComment_p
 vmap <silent>  <Plug>TComment_
 omap <silent>  <Plug>TComment_
-map  d "_d
-nnoremap <silent>  a : if exists("syntax_on") |    syntax off | else |      syntax enable | endif  
-nnoremap  t :w | !cp ~/repos/CP/templates/template.cpp % 
-smap <silent>  __ <Plug>TComment_ __
+nnoremap  f' :Marks
+nnoremap  wq :wqa
+map  ev :e ~/.vimrc 
+map  sc :source ~/repos/CP/cpsession.vim
+nmap  66 :mksession! ~/repos/CP/cpsession.vim
+map  sd gg"_dGP 
 omap <silent>  __ <Plug>TComment_ __
+smap <silent>  __ <Plug>TComment_ __
+nnoremap  t :!cp ~/repos/CP/templates/template.cpp % 
+nnoremap <silent>  a : if exists("syntax_on") |    syntax off | else |      syntax enable | endif  
+map  d "_d
 map <silent>  _s <Plug>TComment_ _s
 map <silent>  _n <Plug>TComment_ _n
 map <silent>  _a <Plug>TComment_ _a
@@ -127,41 +137,121 @@ map <silent>  _  <Plug>TComment_ _
 map <silent>  _p <Plug>TComment_ _p
 xmap <silent>  __ <Plug>TComment_ __
 nmap <silent>  __ <Plug>TComment_ __
-map  sd gg"_dGP 
-map  y "+y
-map  P "+P
-map  p "+p
-nmap  66 :mksession! ~/repos/CP/cpsession.vim
-nmap  sc :source ~/repos/CP/cpsession.vim
 nnoremap <silent>    :set hlsearch!|set hlsearch?
-nnoremap  ev :e ~/.vimrc
-nnoremap  wq :wqa
-nnoremap  f' :Marks
+nnoremap  fm :Marks
 nnoremap  fl :Lines
 nnoremap  ff :Files
 nnoremap  fb :Buffers
 nnoremap  = gg=G``
 nnoremap  R :%s//
 nnoremap  r *``cgn
+map  y "+y
+map  P "+P
+map  p "+p
 map  sv :source ~/.vimrc
 nnoremap  n :call NumberToggle()
 nnoremap   <Nop>
 map // //
+nmap <p <Plug>(unimpaired-put-below-leftward)
+nmap <P <Plug>(unimpaired-put-above-leftward)
+nmap <s <Plug>(unimpaired-enable)
+nmap =p <Plug>(unimpaired-put-below-reformat)
+nmap =P <Plug>(unimpaired-put-above-reformat)
+nmap =s <Plug>(unimpaired-toggle)
+nmap >p <Plug>(unimpaired-put-below-rightward)
+nmap >P <Plug>(unimpaired-put-above-rightward)
+nmap >s <Plug>(unimpaired-disable)
 noremap J 10j
 noremap K 10k
 nmap Y :%y+
-omap <silent> \__ <Plug>TComment_\__
-smap <silent> \__ <Plug>TComment_\__
-nmap <silent> \__ <Plug>TComment_\__
-xmap <silent> \__ <Plug>TComment_\__
-map <silent> \_p <Plug>TComment_\_p
-map <silent> \_  <Plug>TComment_\_ 
-xmap <silent> \_i <Plug>TComment_\_i
-map <silent> \_r <Plug>TComment_\_r
-map <silent> \_b <Plug>TComment_\_b
-map <silent> \_a <Plug>TComment_\_a
-map <silent> \_n <Plug>TComment_\_n
+nmap [xx <Plug>(unimpaired-xml-encode-line)
+xmap [x <Plug>(unimpaired-xml-encode)
+nmap [x <Plug>(unimpaired-xml-encode)
+nmap [uu <Plug>(unimpaired-url-encode-line)
+xmap [u <Plug>(unimpaired-url-encode)
+nmap [u <Plug>(unimpaired-url-encode)
+nmap [CC <Plug>(unimpaired-string-encode-line)
+xmap [C <Plug>(unimpaired-string-encode)
+nmap [C <Plug>(unimpaired-string-encode)
+nmap [yy <Plug>(unimpaired-string-encode-line)
+xmap [y <Plug>(unimpaired-string-encode)
+nmap [y <Plug>(unimpaired-string-encode)
+nmap [P <Plug>(unimpaired-put-above)
+nmap [p <Plug>(unimpaired-put-above)
+nmap [o <Plug>(unimpaired-enable)
+xmap [e <Plug>(unimpaired-move-selection-up)
+nmap [e <Plug>(unimpaired-move-up)
+nmap [  <Plug>(unimpaired-blank-up)
+omap [n <Plug>(unimpaired-context-previous)
+xmap [n <Plug>(unimpaired-context-previous)
+nmap [n <Plug>(unimpaired-context-previous)
+nmap [f <Plug>(unimpaired-directory-previous)
+nmap [<C-T> <Plug>(unimpaired-ptprevious)
+nmap [ <Plug>(unimpaired-ptprevious)
+nmap [T <Plug>(unimpaired-tfirst)
+nmap [t <Plug>(unimpaired-tprevious)
+nmap [<C-Q> <Plug>(unimpaired-cpfile)
+nmap [ <Plug>(unimpaired-cpfile)
+nmap [Q <Plug>(unimpaired-cfirst)
+nmap [q <Plug>(unimpaired-cprevious)
+nmap [<C-L> <Plug>(unimpaired-lpfile)
+nmap [ <Plug>(unimpaired-lpfile)
+nmap [L <Plug>(unimpaired-lfirst)
+nmap [l <Plug>(unimpaired-lprevious)
+nmap [B <Plug>(unimpaired-bfirst)
+nmap [b <Plug>(unimpaired-bprevious)
+nmap [A <Plug>(unimpaired-first)
+nmap [a <Plug>(unimpaired-previous)
 map <silent> \_s <Plug>TComment_\_s
+map <silent> \_n <Plug>TComment_\_n
+map <silent> \_a <Plug>TComment_\_a
+map <silent> \_b <Plug>TComment_\_b
+map <silent> \_r <Plug>TComment_\_r
+xmap <silent> \_i <Plug>TComment_\_i
+map <silent> \_  <Plug>TComment_\_ 
+map <silent> \_p <Plug>TComment_\_p
+xmap <silent> \__ <Plug>TComment_\__
+nmap <silent> \__ <Plug>TComment_\__
+smap <silent> \__ <Plug>TComment_\__
+omap <silent> \__ <Plug>TComment_\__
+nmap ]xx <Plug>(unimpaired-xml-decode-line)
+xmap ]x <Plug>(unimpaired-xml-decode)
+nmap ]x <Plug>(unimpaired-xml-decode)
+nmap ]uu <Plug>(unimpaired-url-decode-line)
+xmap ]u <Plug>(unimpaired-url-decode)
+nmap ]u <Plug>(unimpaired-url-decode)
+nmap ]CC <Plug>(unimpaired-string-decode-line)
+xmap ]C <Plug>(unimpaired-string-decode)
+nmap ]C <Plug>(unimpaired-string-decode)
+nmap ]yy <Plug>(unimpaired-string-decode-line)
+xmap ]y <Plug>(unimpaired-string-decode)
+nmap ]y <Plug>(unimpaired-string-decode)
+nmap ]P <Plug>(unimpaired-put-below)
+nmap ]p <Plug>(unimpaired-put-below)
+nmap ]o <Plug>(unimpaired-disable)
+xmap ]e <Plug>(unimpaired-move-selection-down)
+nmap ]e <Plug>(unimpaired-move-down)
+nmap ]  <Plug>(unimpaired-blank-down)
+omap ]n <Plug>(unimpaired-context-next)
+xmap ]n <Plug>(unimpaired-context-next)
+nmap ]n <Plug>(unimpaired-context-next)
+nmap ]f <Plug>(unimpaired-directory-next)
+nmap ]<C-T> <Plug>(unimpaired-ptnext)
+nmap ] <Plug>(unimpaired-ptnext)
+nmap ]T <Plug>(unimpaired-tlast)
+nmap ]t <Plug>(unimpaired-tnext)
+nmap ]<C-Q> <Plug>(unimpaired-cnfile)
+nmap ] <Plug>(unimpaired-cnfile)
+nmap ]Q <Plug>(unimpaired-clast)
+nmap ]q <Plug>(unimpaired-cnext)
+nmap ]<C-L> <Plug>(unimpaired-lnfile)
+nmap ] <Plug>(unimpaired-lnfile)
+nmap ]L <Plug>(unimpaired-llast)
+nmap ]l <Plug>(unimpaired-lnext)
+nmap ]B <Plug>(unimpaired-blast)
+nmap ]b <Plug>(unimpaired-bnext)
+nmap ]A <Plug>(unimpaired-last)
+nmap ]a <Plug>(unimpaired-next)
 xmap gx <Plug>NetrwBrowseXVis
 nmap gx <Plug>NetrwBrowseX
 xmap <silent> g> <Plug>TComment_Comment
@@ -196,72 +286,68 @@ nmap <silent> gc1 <Plug>TComment_gc1
 nmap <silent> gc <Plug>TComment_gc
 omap <silent> ic <Plug>TComment_ic
 vmap <silent> ic <Plug>TComment_ic
-nnoremap <silent> <Plug>(-fzf-complete-finish) a
-nnoremap <Plug>(-fzf-:) :
-nnoremap <Plug>(-fzf-/) /
-nnoremap <Plug>(-fzf-vim-do) :execute g:__fzf_command
-nnoremap <C-B> :w | !g++ -std=c++14 % -o %:r &> output && ./%:r < ~/repos/CP/input > ~/repos/CP/output && rm ./%:r 
-nmap <silent> <C-_>9 <Plug>TComment_9
-nmap <silent> <C-_>8 <Plug>TComment_8
-nmap <silent> <C-_>7 <Plug>TComment_7
-nmap <silent> <C-_>6 <Plug>TComment_6
-nmap <silent> <C-_>5 <Plug>TComment_5
-nmap <silent> <C-_>4 <Plug>TComment_4
-nmap <silent> <C-_>3 <Plug>TComment_3
-nmap <silent> <C-_>2 <Plug>TComment_2
-nmap <silent> <C-_>1 <Plug>TComment_1
-nmap <silent> <C-_><C-_> <Plug>TComment_
-nnoremap <Plug>TComment_<C-_>9 :call tcomment#SetOption("count", 9)
-nnoremap <Plug>TComment_9 :call tcomment#SetOption("count", 9)
-nnoremap <Plug>TComment_<C-_>8 :call tcomment#SetOption("count", 8)
-nnoremap <Plug>TComment_8 :call tcomment#SetOption("count", 8)
-nnoremap <Plug>TComment_<C-_>7 :call tcomment#SetOption("count", 7)
-nnoremap <Plug>TComment_7 :call tcomment#SetOption("count", 7)
-nnoremap <Plug>TComment_<C-_>6 :call tcomment#SetOption("count", 6)
-nnoremap <Plug>TComment_6 :call tcomment#SetOption("count", 6)
-nnoremap <Plug>TComment_<C-_>5 :call tcomment#SetOption("count", 5)
-nnoremap <Plug>TComment_5 :call tcomment#SetOption("count", 5)
-nnoremap <Plug>TComment_<C-_>4 :call tcomment#SetOption("count", 4)
-nnoremap <Plug>TComment_4 :call tcomment#SetOption("count", 4)
-nnoremap <Plug>TComment_<C-_>3 :call tcomment#SetOption("count", 3)
-nnoremap <Plug>TComment_3 :call tcomment#SetOption("count", 3)
-nnoremap <Plug>TComment_<C-_>2 :call tcomment#SetOption("count", 2)
-nnoremap <Plug>TComment_2 :call tcomment#SetOption("count", 2)
-nnoremap <Plug>TComment_<C-_>1 :call tcomment#SetOption("count", 1)
-nnoremap <Plug>TComment_1 :call tcomment#SetOption("count", 1)
-snoremap <Plug>TComment_ __ :TComment
-onoremap <Plug>TComment_ __ :TComment
+nmap yo <Plug>(unimpaired-toggle)
+nnoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %
+nnoremap <silent> <F25> :doautocmd <nomodeline> FocusGained %
+onoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %
+onoremap <silent> <F25> :silent doautocmd <nomodeline> FocusGained %
+vnoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %gv
+vnoremap <silent> <F25> :silent doautocmd <nomodeline> FocusGained %gv
+tnoremap <silent> <F24> :silent doautocmd FocusLost %
+tnoremap <silent> <F25> :silent doautocmd FocusGained %
+noremap <Plug>TComment_\_s :TCommentAs =&ft_
+noremap <Plug>TComment_\_n :TCommentAs =&ft 
+noremap <Plug>TComment_\_a :TCommentAs 
+noremap <Plug>TComment_\_b :TCommentBlock
+noremap <Plug>TComment_\_r :TCommentRight
+xnoremap <Plug>TComment_\_i :TCommentInline
+noremap <Plug>TComment_\_  :TComment 
+noremap <Plug>TComment_\_p vip:TComment
+xnoremap <Plug>TComment_\__ :TCommentMaybeInline
+nnoremap <Plug>TComment_\__ :TComment
+snoremap <Plug>TComment_\__ :TComment
+onoremap <Plug>TComment_\__ :TComment
 nnoremap <Plug>TComment_<C-_><C-_> :TComment
 nnoremap <Plug>TComment_ :TComment
-onoremap <Plug>TComment_\__ :TComment
-snoremap <Plug>TComment_\__ :TComment
-nnoremap <Plug>TComment_\__ :TComment
-xnoremap <Plug>TComment_\__ :TCommentMaybeInline
-noremap <Plug>TComment_\_p vip:TComment
-noremap <Plug>TComment_\_  :TComment 
-xnoremap <Plug>TComment_\_i :TCommentInline
-noremap <Plug>TComment_\_r :TCommentRight
-noremap <Plug>TComment_\_b :TCommentBlock
-noremap <Plug>TComment_\_a :TCommentAs 
-noremap <Plug>TComment_\_n :TCommentAs =&ft 
-noremap <Plug>TComment_\_s :TCommentAs =&ft_
+onoremap <Plug>TComment_ __ :TComment
+snoremap <Plug>TComment_ __ :TComment
+nnoremap <Plug>TComment_<C-_>1 :call tcomment#SetOption("count", 1)
+nnoremap <Plug>TComment_1 :call tcomment#SetOption("count", 1)
+nnoremap <Plug>TComment_<C-_>2 :call tcomment#SetOption("count", 2)
+nnoremap <Plug>TComment_2 :call tcomment#SetOption("count", 2)
+nnoremap <Plug>TComment_<C-_>3 :call tcomment#SetOption("count", 3)
+nnoremap <Plug>TComment_3 :call tcomment#SetOption("count", 3)
+nnoremap <Plug>TComment_<C-_>4 :call tcomment#SetOption("count", 4)
+nnoremap <Plug>TComment_4 :call tcomment#SetOption("count", 4)
+nnoremap <Plug>TComment_<C-_>5 :call tcomment#SetOption("count", 5)
+nnoremap <Plug>TComment_5 :call tcomment#SetOption("count", 5)
+nnoremap <Plug>TComment_<C-_>6 :call tcomment#SetOption("count", 6)
+nnoremap <Plug>TComment_6 :call tcomment#SetOption("count", 6)
+nnoremap <Plug>TComment_<C-_>7 :call tcomment#SetOption("count", 7)
+nnoremap <Plug>TComment_7 :call tcomment#SetOption("count", 7)
+nnoremap <Plug>TComment_<C-_>8 :call tcomment#SetOption("count", 8)
+nnoremap <Plug>TComment_8 :call tcomment#SetOption("count", 8)
+nnoremap <Plug>TComment_<C-_>9 :call tcomment#SetOption("count", 9)
+nnoremap <Plug>TComment_9 :call tcomment#SetOption("count", 9)
+nmap <silent> <C-_><C-_> <Plug>TComment_
+nmap <silent> <C-_>1 <Plug>TComment_1
+nmap <silent> <C-_>2 <Plug>TComment_2
+nmap <silent> <C-_>3 <Plug>TComment_3
+nmap <silent> <C-_>4 <Plug>TComment_4
+nmap <silent> <C-_>5 <Plug>TComment_5
+nmap <silent> <C-_>6 <Plug>TComment_6
+nmap <silent> <C-_>7 <Plug>TComment_7
+nmap <silent> <C-_>8 <Plug>TComment_8
+nmap <silent> <C-_>9 <Plug>TComment_9
+nnoremap <C-B> :w | !g++ -std=c++14 % -o %:r &> output && ./%:r < input > output && rm ./%:r
+nnoremap <Plug>(-fzf-vim-do) :execute g:__fzf_command
+nnoremap <Plug>(-fzf-/) /
+nnoremap <Plug>(-fzf-:) :
+nnoremap <silent> <Plug>(-fzf-complete-finish) a
+nnoremap <silent> <Plug>(YCMFindSymbolInDocument) :call youcompleteme#finder#FindSymbol( 'document' )
+nnoremap <silent> <Plug>(YCMFindSymbolInWorkspace) :call youcompleteme#finder#FindSymbol( 'workspace' )
 xnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))
-onoremap <silent> <Plug>(fzf-maps-o) :call fzf#vim#maps('o', 0)
-xnoremap <silent> <Plug>(fzf-maps-x) :call fzf#vim#maps('x', 0)
-nnoremap <silent> <Plug>(fzf-maps-n) :call fzf#vim#maps('n', 0)
-tnoremap <silent> <Plug>(fzf-normal) 
-tnoremap <silent> <Plug>(fzf-insert) i
-nnoremap <silent> <Plug>(fzf-normal) <Nop>
-nnoremap <silent> <Plug>(fzf-insert) i
-tnoremap <silent> <F25> :silent doautocmd FocusGained %
-tnoremap <silent> <F24> :silent doautocmd FocusLost %
-vnoremap <silent> <F25> :silent doautocmd <nomodeline> FocusGained %gv
-vnoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %gv
-onoremap <silent> <F25> :silent doautocmd <nomodeline> FocusGained %
-onoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %
-nnoremap <silent> <F25> :doautocmd <nomodeline> FocusGained %
-nnoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %
 vmap <silent> <C-_>9 <Plug>TComment_9
 omap <silent> <C-_>9 <Plug>TComment_9
 vmap <silent> <C-_>8 <Plug>TComment_8
@@ -386,10 +472,70 @@ vnoremap <Plug>TComment_<C-_><C-_> :TCommentMaybeInline
 vnoremap <Plug>TComment_ :TCommentMaybeInline
 onoremap <Plug>TComment_<C-_><C-_> :TComment
 onoremap <Plug>TComment_ :TComment
+tnoremap <silent> <Plug>(fzf-normal) 
+tnoremap <silent> <Plug>(fzf-insert) i
+nnoremap <silent> <Plug>(fzf-normal) <Nop>
+nnoremap <silent> <Plug>(fzf-insert) i
+onoremap <silent> <Plug>(fzf-maps-o) :call fzf#vim#maps('o', 0)
+xnoremap <silent> <Plug>(fzf-maps-x) :call fzf#vim#maps('x', 0)
+nnoremap <silent> <Plug>(fzf-maps-n) :call fzf#vim#maps('n', 0)
+nnoremap <silent> <Plug>unimpairedTPNext :exe "p".(v:count ? v:count : "")."tnext"
+nnoremap <silent> <Plug>unimpairedTPPrevious :exe "p".(v:count ? v:count : "")."tprevious"
+nnoremap <silent> <Plug>(unimpaired-ptnext) :exe v:count1 . "ptnext"
+nnoremap <silent> <Plug>(unimpaired-ptprevious) :exe v:count1 . "ptprevious"
+nnoremap <silent> <Plug>unimpairedTLast :exe "".(v:count ? v:count : "")."tlast"
+nnoremap <silent> <Plug>unimpairedTFirst :exe "".(v:count ? v:count : "")."tfirst"
+nnoremap <silent> <Plug>unimpairedTNext :exe "".(v:count ? v:count : "")."tnext"
+nnoremap <silent> <Plug>unimpairedTPrevious :exe "".(v:count ? v:count : "")."tprevious"
+nnoremap <silent> <Plug>(unimpaired-tlast) :exe "".(v:count ? v:count : "")."tlast"
+nnoremap <silent> <Plug>(unimpaired-tfirst) :exe "".(v:count ? v:count : "")."tfirst"
+nnoremap <silent> <Plug>(unimpaired-tnext) :exe "".(v:count ? v:count : "")."tnext"
+nnoremap <silent> <Plug>(unimpaired-tprevious) :exe "".(v:count ? v:count : "")."tprevious"
+nnoremap <silent> <Plug>unimpairedQNFile :exe "".(v:count ? v:count : "")."cnfile"zv
+nnoremap <silent> <Plug>unimpairedQPFile :exe "".(v:count ? v:count : "")."cpfile"zv
+nnoremap <silent> <Plug>(unimpaired-cnfile) :exe "".(v:count ? v:count : "")."cnfile"zv
+nnoremap <silent> <Plug>(unimpaired-cpfile) :exe "".(v:count ? v:count : "")."cpfile"zv
+nnoremap <silent> <Plug>unimpairedQLast :exe "".(v:count ? v:count : "")."clast"zv
+nnoremap <silent> <Plug>unimpairedQFirst :exe "".(v:count ? v:count : "")."cfirst"zv
+nnoremap <silent> <Plug>unimpairedQNext :exe "".(v:count ? v:count : "")."cnext"zv
+nnoremap <silent> <Plug>unimpairedQPrevious :exe "".(v:count ? v:count : "")."cprevious"zv
+nnoremap <silent> <Plug>(unimpaired-clast) :exe "".(v:count ? v:count : "")."clast"zv
+nnoremap <silent> <Plug>(unimpaired-cfirst) :exe "".(v:count ? v:count : "")."cfirst"zv
+nnoremap <silent> <Plug>(unimpaired-cnext) :exe "".(v:count ? v:count : "")."cnext"zv
+nnoremap <silent> <Plug>(unimpaired-cprevious) :exe "".(v:count ? v:count : "")."cprevious"zv
+nnoremap <silent> <Plug>unimpairedLNFile :exe "".(v:count ? v:count : "")."lnfile"zv
+nnoremap <silent> <Plug>unimpairedLPFile :exe "".(v:count ? v:count : "")."lpfile"zv
+nnoremap <silent> <Plug>(unimpaired-lnfile) :exe "".(v:count ? v:count : "")."lnfile"zv
+nnoremap <silent> <Plug>(unimpaired-lpfile) :exe "".(v:count ? v:count : "")."lpfile"zv
+nnoremap <silent> <Plug>unimpairedLLast :exe "".(v:count ? v:count : "")."llast"zv
+nnoremap <silent> <Plug>unimpairedLFirst :exe "".(v:count ? v:count : "")."lfirst"zv
+nnoremap <silent> <Plug>unimpairedLNext :exe "".(v:count ? v:count : "")."lnext"zv
+nnoremap <silent> <Plug>unimpairedLPrevious :exe "".(v:count ? v:count : "")."lprevious"zv
+nnoremap <silent> <Plug>(unimpaired-llast) :exe "".(v:count ? v:count : "")."llast"zv
+nnoremap <silent> <Plug>(unimpaired-lfirst) :exe "".(v:count ? v:count : "")."lfirst"zv
+nnoremap <silent> <Plug>(unimpaired-lnext) :exe "".(v:count ? v:count : "")."lnext"zv
+nnoremap <silent> <Plug>(unimpaired-lprevious) :exe "".(v:count ? v:count : "")."lprevious"zv
+nnoremap <silent> <Plug>unimpairedBLast :exe "".(v:count ? v:count : "")."blast"
+nnoremap <silent> <Plug>unimpairedBFirst :exe "".(v:count ? v:count : "")."bfirst"
+nnoremap <silent> <Plug>unimpairedBNext :exe "".(v:count ? v:count : "")."bnext"
+nnoremap <silent> <Plug>unimpairedBPrevious :exe "".(v:count ? v:count : "")."bprevious"
+nnoremap <silent> <Plug>(unimpaired-blast) :exe "".(v:count ? v:count : "")."blast"
+nnoremap <silent> <Plug>(unimpaired-bfirst) :exe "".(v:count ? v:count : "")."bfirst"
+nnoremap <silent> <Plug>(unimpaired-bnext) :exe "".(v:count ? v:count : "")."bnext"
+nnoremap <silent> <Plug>(unimpaired-bprevious) :exe "".(v:count ? v:count : "")."bprevious"
+nnoremap <silent> <Plug>unimpairedALast :exe "".(v:count ? v:count : "")."last"
+nnoremap <silent> <Plug>unimpairedAFirst :exe "".(v:count ? v:count : "")."first"
+nnoremap <silent> <Plug>unimpairedANext :exe "".(v:count ? v:count : "")."next"
+nnoremap <silent> <Plug>unimpairedAPrevious :exe "".(v:count ? v:count : "")."previous"
+nnoremap <silent> <Plug>(unimpaired-last) :exe "".(v:count ? v:count : "")."last"
+nnoremap <silent> <Plug>(unimpaired-first) :exe "".(v:count ? v:count : "")."first"
+nnoremap <silent> <Plug>(unimpaired-next) :exe "".(v:count ? v:count : "")."next"
+nnoremap <silent> <Plug>(unimpaired-previous) :exe "".(v:count ? v:count : "")."previous"
 nnoremap <C-H> h
 nnoremap <C-L> l
 nnoremap <C-K> k
 nnoremap <C-J> j
+inoremap <expr> 	 pumvisible() ? "\" : "\	"
 imap <silent> 9 <Plug>TComment_9
 imap <silent> 8 <Plug>TComment_8
 imap <silent> 7 <Plug>TComment_7
@@ -417,8 +563,10 @@ set background=dark
 set backspace=indent,eol,start
 set backupdir=~/.cache/vim/backup//
 set clipboard=unnamed
+set cmdheight=2
 set comments=b:#,fb:-
 set commentstring=#\ %s
+set completeopt=preview,menuone
 set directory=~/.cache/vim/swap//
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
@@ -432,8 +580,9 @@ set laststatus=2
 set lazyredraw
 set mouse=a
 set operatorfunc=TCommentOpFunc_gcc
+set pyxversion=3
 set ruler
-set runtimepath=~/.vim,~/.vim/bundle/Vundle.vim,~/.vim/bundle/tcomment_vim,~/.vim/bundle/vim-tmux-focus-events,~/.vim/bundle/fzf,~/.vim/bundle/fzf.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim82,/usr/share/vim/vimfiles/after,~/.vim/after,~/.vim/bundle/Vundle.vim,~/.vim/bundle/Vundle.vim/after,~/.vim/bundle/tcomment_vim/after,~/.vim/bundle/vim-tmux-focus-events/after,~/.vim/bundle/fzf/after,~/.vim/bundle/fzf.vim/after
+set runtimepath=~/.vim,~/.vim/bundle/Vundle.vim,~/.vim/bundle/YouCompleteMe,~/.vim/bundle/vim-unimpaired,~/.vim/bundle/fzf.vim,~/.vim/bundle/fzf,~/.vim/bundle/tcomment_vim,~/.vim/bundle/Vundle.vim,~/.vim/bundle/tcomment_vim,~/.vim/bundle/vim-tmux-focus-events,~/.vim/bundle/fzf,~/.vim/bundle/fzf.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim82,/usr/share/vim/vimfiles/after,~/.vim/after,~/.vim/bundle/Vundle.vim,~/.vim/bundle/Vundle.vim/after,~/.vim/bundle/tcomment_vim/after,~/.vim/bundle/vim-tmux-focus-events/after,~/.vim/bundle/fzf/after,~/.vim/bundle/fzf.vim/after,~/.vim/bundle/Vundle.vim/after,~/.vim/bundle/YouCompleteMe/after,~/.vim/bundle/vim-unimpaired/after,~/.vim/bundle/fzf.vim/after,~/.vim/bundle/fzf/after,~/.vim/bundle/tcomment_vim/after
 set shiftround
 set shiftwidth=2
 set showcmd
@@ -481,9 +630,9 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 94 + 94) / 189)
-exe '2resize ' . ((&lines * 20 + 21) / 43)
+exe '2resize ' . ((&lines * 23 + 25) / 51)
 exe 'vert 2resize ' . ((&columns * 94 + 94) / 189)
-exe '3resize ' . ((&lines * 20 + 21) / 43)
+exe '3resize ' . ((&lines * 24 + 25) / 51)
 exe 'vert 3resize ' . ((&columns * 94 + 94) / 189)
 argglobal
 balt sol.py
@@ -618,12 +767,12 @@ setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 77 - ((40 * winheight(0) + 20) / 41)
+let s:l = 62 - ((32 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 77
-normal! 03|
+keepjumps 62
+normal! 0
 wincmd w
 argglobal
 if bufexists("input") | buffer input | else | edit input | endif
@@ -759,12 +908,12 @@ setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 4 - ((3 * winheight(0) + 10) / 20)
+let s:l = 4 - ((3 * winheight(0) + 11) / 23)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 4
-normal! 02|
+normal! 0
 wincmd w
 argglobal
 if bufexists("output") | buffer output | else | edit output | endif
@@ -900,21 +1049,21 @@ setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 19148 - ((0 * winheight(0) + 10) / 20)
+let s:l = 8 - ((7 * winheight(0) + 12) / 24)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 19148
-normal! 05|
+keepjumps 8
+normal! 02|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 94 + 94) / 189)
-exe '2resize ' . ((&lines * 20 + 21) / 43)
+exe '2resize ' . ((&lines * 23 + 25) / 51)
 exe 'vert 2resize ' . ((&columns * 94 + 94) / 189)
-exe '3resize ' . ((&lines * 20 + 21) / 43)
+exe '3resize ' . ((&lines * 24 + 25) / 51)
 exe 'vert 3resize ' . ((&columns * 94 + 94) / 189)
 tabnext 1
-badd +27 sol.py
 badd +1 sol.cpp
+badd +27 sol.py
 badd +1 input
 badd +1 output
 badd +11 Solution.java

@@ -90,7 +90,7 @@ set ignorecase
 set smartcase
 " Shift to the next round tab stop. 
 set shiftround
-
+hi Visual term=standout ctermfg=15 ctermbg=1 guifg=White guibg=Red
 set autoindent
 set autowrite
 " Autoload files that have changed outside of vim
@@ -107,7 +107,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-" Plugin 'ycm-core/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 " Plugin 'preservim/nerdtree'
 " Plugin 'vim-airline/vim-airline'
 " Plugin 'vim-airline/vim-airline-themes'
@@ -121,7 +121,7 @@ Plugin 'https://github.com/tpope/vim-unimpaired'
 " Plugin 'https://github.com/ctrlpvim/ctrlp.vim'
 " Plugin 'https://github.com/tpope/vim-fugitive'
 " Plugin 'ervandew/supertab'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 " Plugin 'SirVer/ultisnips'
  
 Plugin 'https://github.com/junegunn/fzf.vim'
@@ -169,9 +169,9 @@ nnoremap <Leader>n :call NumberToggle()<cr>
 
 " Source files and edit rc
 map <Leader>sv :source ~/.vimrc<CR>
-map <Leader>sc :source ~/repos/CP/cpsession.vim
+map <Leader>sc :source ~/repos/CP/cpsession.vim<CR>
 
-map <Leader>ev :e ~/.vimrc
+map <Leader>ev :e ~/.vimrc <CR>
 
 " Copy and paste 
 map <Leader>p "+p
