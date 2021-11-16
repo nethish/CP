@@ -108,6 +108,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ycm-core/YouCompleteMe'
+Plugin 'christoomey/vim-tmux-navigator'
 " Plugin 'preservim/nerdtree'
 " Plugin 'vim-airline/vim-airline'
 " Plugin 'vim-airline/vim-airline-themes'
@@ -200,7 +201,7 @@ noremap J 10j
 noremap K 10k
 
 nnoremap <silent> <Leader><Leader> :<c-u>set hlsearch!<bar>set hlsearch?<CR>
-set nohlsearch
+" set nohlsearch
 
 " nnoremap <Leader>af <C-x><C-f>
 " nnoremap <Leader>al <C-x><C-l>
@@ -217,7 +218,8 @@ nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
 
-set cmdheight=2
+set cmdheight=1
+map <Leader>sd <C-L><C-L><C-K><C-K>gg"_dGP<C-H><C-H>
 
 " Templates and snippets
 autocmd filetype cpp silent nnoremap <Leader>t :!cp ~/repos/CP/templates/template.cpp % <CR><CR>
