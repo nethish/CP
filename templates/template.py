@@ -24,7 +24,7 @@ Facts and Data representation
 Constructive? Top bottom up down
 """
 def solve():
-  pass
+  start_here
 
 
 def main():

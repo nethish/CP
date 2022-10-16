@@ -70,7 +70,7 @@ inoremap <expr> <Plug>(fzf-complete-file-ag) fzf#vim#complete#path('ag -l -g ""'
 inoremap <expr> <Plug>(fzf-complete-file) fzf#vim#complete#path("find . -path '*/\.*' -prune -o -type f -print -o -type l -print | sed 's:^..::'")
 inoremap <expr> <Plug>(fzf-complete-path) fzf#vim#complete#path("find . -path '*/\.*' -prune -o -print | sed '1d;s:^..::'")
 inoremap <expr> <Plug>(fzf-complete-word) fzf#vim#complete#word()
-nnoremap  :w | !g++ -std=c++14 % -o %:r &> output && ./%:r < input > output && rm ./%:r
+nnoremap  :w | !python3 % < input > output 2>&1
 nnoremap  h
 nnoremap 	 
 nnoremap <NL> j
@@ -117,8 +117,9 @@ map <silent>   <Plug>TComment_
 map <silent> p <Plug>TComment_p
 vmap <silent>  <Plug>TComment_
 omap <silent>  <Plug>TComment_
+map  sh /start_hereS
 nnoremap <silent>  a : if exists("syntax_on") |    syntax off | else |      syntax enable | endif  
-nnoremap  t :!cp ~/repos/CP/templates/template.cpp % 
+nnoremap  t :!cp ~/repos/CP/templates/template.py % 
 smap <silent>  __ <Plug>TComment_ __
 omap <silent>  __ <Plug>TComment_ __
 nmap  66 :mksession! ~/repos/CP/cpsession.vim
@@ -297,7 +298,7 @@ nnoremap <silent> <Plug>(-fzf-complete-finish) a
 nnoremap <Plug>(-fzf-:) :
 nnoremap <Plug>(-fzf-/) /
 nnoremap <Plug>(-fzf-vim-do) :execute g:__fzf_command
-nnoremap <C-B> :w | !g++ -std=c++14 % -o %:r &> output && ./%:r < input > output && rm ./%:r
+nnoremap <C-B> :w | !python3 % < input > output 2>&1
 nmap <silent> <C-_>9 <Plug>TComment_9
 nmap <silent> <C-_>8 <Plug>TComment_8
 nmap <silent> <C-_>7 <Plug>TComment_7
@@ -350,9 +351,10 @@ onoremap <silent> <F25> :silent doautocmd <nomodeline> FocusGained %
 onoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %
 nnoremap <silent> <F25> :doautocmd <nomodeline> FocusGained %
 nnoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %
+nnoremap <SNR>39_: :=v:count ? v:count : ''
 nnoremap <silent> <Plug>(YCMFindSymbolInDocument) :call youcompleteme#finder#FindSymbol( 'document' )
 nnoremap <silent> <Plug>(YCMFindSymbolInWorkspace) :call youcompleteme#finder#FindSymbol( 'workspace' )
-nnoremap <SNR>39_: :=v:count ? v:count : ''
+nnoremap <SNR>40_: :=v:count ? v:count : ''
 xnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))
 vmap <silent> <C-_>9 <Plug>TComment_9
@@ -588,9 +590,8 @@ set laststatus=2
 set lazyredraw
 set mouse=a
 set operatorfunc=TCommentOpFunc_gcc
-set pyxversion=3
 set ruler
-set runtimepath=~/.vim,~/.vim/bundle/Vundle.vim,~/.vim/bundle/YouCompleteMe,~/.vim/bundle/vim-tmux-navigator,~/.vim/bundle/lightline.vim,~/.vim/bundle/vim-unimpaired,~/.vim/bundle/fzf.vim,~/.vim/bundle/fzf,~/.vim/bundle/vim-fugitive,~/.vim/bundle/tcomment_vim,~/.vim/bundle/Vundle.vim,~/.vim/bundle/YouCompleteMe,~/.vim/bundle/vim-unimpaired,~/.vim/bundle/fzf.vim,~/.vim/bundle/fzf,~/.vim/bundle/tcomment_vim,~/.vim/bundle/Vundle.vim,~/.vim/bundle/tcomment_vim,~/.vim/bundle/vim-tmux-focus-events,~/.vim/bundle/fzf,~/.vim/bundle/fzf.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim82,/usr/share/vim/vimfiles/after,~/.vim/after,~/.vim/bundle/Vundle.vim,~/.vim/bundle/Vundle.vim/after,~/.vim/bundle/tcomment_vim/after,~/.vim/bundle/vim-tmux-focus-events/after,~/.vim/bundle/fzf/after,~/.vim/bundle/fzf.vim/after,~/.vim/bundle/Vundle.vim/after,~/.vim/bundle/YouCompleteMe/after,~/.vim/bundle/vim-unimpaired/after,~/.vim/bundle/fzf.vim/after,~/.vim/bundle/fzf/after,~/.vim/bundle/tcomment_vim/after,~/.vim/bundle/Vundle.vim/after,~/.vim/bundle/YouCompleteMe/after,~/.vim/bundle/vim-tmux-navigator/after,~/.vim/bundle/lightline.vim/after,~/.vim/bundle/vim-unimpaired/after,~/.vim/bundle/fzf.vim/after,~/.vim/bundle/fzf/after,~/.vim/bundle/vim-fugitive/after,~/.vim/bundle/tcomment_vim/after
+set runtimepath=~/.vim,~/.vim/bundle/Vundle.vim,~/.vim/bundle/YouCompleteMe,~/.vim/bundle/vim-tmux-navigator,~/.vim/bundle/lightline.vim,~/.vim/bundle/kotlin-vim,~/.vim/bundle/vim-unimpaired,~/.vim/bundle/fzf.vim,~/.vim/bundle/fzf,~/.vim/bundle/vim-fugitive,~/.vim/bundle/tcomment_vim,~/.vim/bundle/Vundle.vim,~/.vim/bundle/YouCompleteMe,~/.vim/bundle/vim-tmux-navigator,~/.vim/bundle/lightline.vim,~/.vim/bundle/vim-unimpaired,~/.vim/bundle/fzf.vim,~/.vim/bundle/fzf,~/.vim/bundle/vim-fugitive,~/.vim/bundle/tcomment_vim,~/.vim/bundle/Vundle.vim,~/.vim/bundle/YouCompleteMe,~/.vim/bundle/vim-unimpaired,~/.vim/bundle/fzf.vim,~/.vim/bundle/fzf,~/.vim/bundle/tcomment_vim,~/.vim/bundle/Vundle.vim,~/.vim/bundle/tcomment_vim,~/.vim/bundle/vim-tmux-focus-events,~/.vim/bundle/fzf,~/.vim/bundle/fzf.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim82,/usr/share/vim/vimfiles/after,~/.vim/after,~/.vim/bundle/Vundle.vim,~/.vim/bundle/Vundle.vim/after,~/.vim/bundle/tcomment_vim/after,~/.vim/bundle/vim-tmux-focus-events/after,~/.vim/bundle/fzf/after,~/.vim/bundle/fzf.vim/after,~/.vim/bundle/Vundle.vim/after,~/.vim/bundle/YouCompleteMe/after,~/.vim/bundle/vim-unimpaired/after,~/.vim/bundle/fzf.vim/after,~/.vim/bundle/fzf/after,~/.vim/bundle/tcomment_vim/after,~/.vim/bundle/Vundle.vim/after,~/.vim/bundle/YouCompleteMe/after,~/.vim/bundle/vim-tmux-navigator/after,~/.vim/bundle/lightline.vim/after,~/.vim/bundle/vim-unimpaired/after,~/.vim/bundle/fzf.vim/after,~/.vim/bundle/fzf/after,~/.vim/bundle/vim-fugitive/after,~/.vim/bundle/tcomment_vim/after,~/.vim/bundle/Vundle.vim/after,~/.vim/bundle/YouCompleteMe/after,~/.vim/bundle/vim-tmux-navigator/after,~/.vim/bundle/lightline.vim/after,~/.vim/bundle/kotlin-vim/after,~/.vim/bundle/vim-unimpaired/after,~/.vim/bundle/fzf.vim/after,~/.vim/bundle/fzf/after,~/.vim/bundle/vim-fugitive/after,~/.vim/bundle/tcomment_vim/after
 set shiftround
 set shiftwidth=2
 set showcmd
@@ -615,9 +616,18 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
+badd +25 sol.cpp
+badd +27 sol.py
+badd +1 input
+badd +1 output
+badd +11 Solution.java
+badd +1 sol.kts
+badd +250 ~/.vimrc
+badd +47 templates/template.cpp
+badd +27 templates/template.py
 argglobal
 %argdel
-edit sol.cpp
+edit templates/template.py
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -644,7 +654,7 @@ exe 'vert 2resize ' . ((&columns * 94 + 94) / 189)
 exe '3resize ' . ((&lines * 21 + 22) / 45)
 exe 'vert 3resize ' . ((&columns * 94 + 94) / 189)
 argglobal
-balt sol.py
+balt templates/template.cpp
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -656,14 +666,14 @@ setlocal breakindentopt=
 setlocal bufhidden=
 setlocal buflisted
 setlocal buftype=
-setlocal cindent
-setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal nocindent
+setlocal cinkeys=0{,0},0),0],:,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 set colorcolumn=80
 setlocal colorcolumn=80
-setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
-setlocal commentstring=/*%s*/
+setlocal comments=b:#,fb:-
+setlocal commentstring=#\ %s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -675,14 +685,14 @@ setlocal nocursorcolumn
 set cursorline
 setlocal cursorline
 setlocal cursorlineopt=both
-setlocal define=^\\s*#\\s*define
+setlocal define=^\\s*\\(def\\|class\\)
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'cpp'
-setlocal filetype=cpp
+if &filetype != 'python'
+setlocal filetype=python
 endif
 setlocal fixendofline
 setlocal foldcolumn=0
@@ -696,19 +706,19 @@ setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
 setlocal formatexpr=
-setlocal formatoptions=croql
+setlocal formatoptions=tcq
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=-1
-setlocal include=^\\s*#\\s*include
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal include=^\\s*\\(from\\|import\\)
+setlocal includeexpr=substitute(substitute(substitute(v:fname,b:grandparent_match,b:grandparent_sub,''),b:parent_match,b:parent_sub,''),b:child_match,b:child_sub,'g')
+setlocal indentexpr=GetPythonIndent(v:lnum)
+setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e,<:>,=elif,=except
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
+setlocal keywordprg=python3\ -m\ pydoc
 setlocal nolinebreak
 setlocal nolisp
 setlocal lispwords=
@@ -723,7 +733,7 @@ setlocal nrformats=bin,octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=ccomplete#Complete
+setlocal omnifunc=python3complete#Complete
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
@@ -748,11 +758,11 @@ setlocal spellfile=
 setlocal spelllang=en
 setlocal spelloptions=
 setlocal statusline=%{lightline#link()}%#LightlineLeft_active_0#%(\ %{lightline#mode()}\ %)%{(&paste)?\"|\":\"\"}%(\ %{&paste?\"PASTE\":\"\"}\ %)%#LightlineLeft_active_0_1#%#LightlineLeft_active_1#%(\ %{fugitive#head()}\ %)%{fugitive#head()!=#\"\"&&((&readonly)||1||(&modified||!&modifiable))?\"|\":\"\"}%(\ %R\ %)%{(&readonly)&&(1||(&modified||!&modifiable))?\"|\":\"\"}%(\ %t\ %)%{(&modified||!&modifiable)?\"|\":\"\"}%(\ %M\ %)%#LightlineLeft_active_1_2#%#LightlineMiddle_active#%=%#LightlineRight_active_1_2#%#LightlineRight_active_1#%(\ %{&fenc!=#\"\"?&fenc:&enc}\ %)%{1||1?\"|\":\"\"}%(\ %{&ft!=#\"\"?&ft:\"no\ ft\"}\ %)%{1?\"|\":\"\"}%(\ %B\ %)%#LightlineRight_active_0_1#%#LightlineRight_active_0#%(\ %{line('.')\ .\ '/'\ .\ line('$')}\ %)
-setlocal suffixesadd=
+setlocal suffixesadd=.py
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'cpp'
-setlocal syntax=cpp
+if &syntax != 'python'
+setlocal syntax=python
 endif
 setlocal tabstop=2
 setlocal tagcase=
@@ -777,12 +787,12 @@ setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 25 - ((23 * winheight(0) + 21) / 43)
+let s:l = 30 - ((29 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 25
-normal! 033|
+keepjumps 30
+normal! 03|
 wincmd w
 argglobal
 if bufexists("input") | buffer input | else | edit input | endif
@@ -1061,11 +1071,11 @@ setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 6 - ((4 * winheight(0) + 10) / 21)
+let s:l = 1 - ((0 * winheight(0) + 10) / 21)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 6
+keepjumps 1
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 94 + 94) / 189)
@@ -1074,11 +1084,6 @@ exe 'vert 2resize ' . ((&columns * 94 + 94) / 189)
 exe '3resize ' . ((&lines * 21 + 22) / 45)
 exe 'vert 3resize ' . ((&columns * 94 + 94) / 189)
 tabnext 1
-badd +22 sol.cpp
-badd +0 sol.py
-badd +1 input
-badd +1 output
-badd +11 Solution.java
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
