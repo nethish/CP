@@ -2,9 +2,9 @@ let SessionLoad = 1
 if &cp | set nocp | endif
 let s:cpo_save=&cpo
 set cpo&vim
-inoremap <silent> <Plug>(-fzf-complete-finish) l
-inoremap <silent> <F25> :silent doautocmd <nomodeline> FocusGained %
 inoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %
+inoremap <silent> <F25> :silent doautocmd <nomodeline> FocusGained %
+inoremap <silent> <Plug>(-fzf-complete-finish) l
 imap <Nul> <C-Space>
 inoremap <expr> <Up> pumvisible() ? "\" : "\<Up>"
 inoremap <expr> <S-Tab> pumvisible() ? "\" : "\<S-Tab>"
@@ -77,16 +77,16 @@ nnoremap <NL> j
 nnoremap  k
 nnoremap  l
 nnoremap <silent>  :TmuxNavigatePrevious
-nmap <silent> 9 <Plug>TComment_9
-nmap <silent> 8 <Plug>TComment_8
-nmap <silent> 7 <Plug>TComment_7
-nmap <silent> 6 <Plug>TComment_6
-nmap <silent> 5 <Plug>TComment_5
-nmap <silent> 4 <Plug>TComment_4
-nmap <silent> 3 <Plug>TComment_3
-nmap <silent> 2 <Plug>TComment_2
-nmap <silent> 1 <Plug>TComment_1
 nmap <silent>  <Plug>TComment_
+nmap <silent> 1 <Plug>TComment_1
+nmap <silent> 2 <Plug>TComment_2
+nmap <silent> 3 <Plug>TComment_3
+nmap <silent> 4 <Plug>TComment_4
+nmap <silent> 5 <Plug>TComment_5
+nmap <silent> 6 <Plug>TComment_6
+nmap <silent> 7 <Plug>TComment_7
+nmap <silent> 8 <Plug>TComment_8
+nmap <silent> 9 <Plug>TComment_9
 vmap <silent> 9 <Plug>TComment_9
 omap <silent> 9 <Plug>TComment_9
 vmap <silent> 8 <Plug>TComment_8
@@ -117,14 +117,13 @@ map <silent>   <Plug>TComment_
 map <silent> p <Plug>TComment_p
 vmap <silent>  <Plug>TComment_
 omap <silent>  <Plug>TComment_
-map  sh /start_hereS
-nnoremap <silent>  a : if exists("syntax_on") |    syntax off | else |      syntax enable | endif  
-nnoremap  t :!cp ~/repos/CP/templates/template.py % 
-smap <silent>  __ <Plug>TComment_ __
-omap <silent>  __ <Plug>TComment_ __
-nmap  66 :mksession! ~/repos/CP/cpsession.vim
-nnoremap  wq :wqa
 nnoremap  f' :Marks
+nnoremap  wq :wqa
+nmap  66 :mksession! ~/repos/CP/cpsession.vim
+omap <silent>  __ <Plug>TComment_ __
+smap <silent>  __ <Plug>TComment_ __
+nnoremap  t :!cp ~/repos/CP/templates/template.py % 
+nnoremap <silent>  a : if exists("syntax_on") |    syntax off | else |      syntax enable | endif  
 map  d "_d
 map <silent>  _s <Plug>TComment_ _s
 map <silent>  _n <Plug>TComment_ _n
@@ -136,6 +135,7 @@ map <silent>  _  <Plug>TComment_ _
 map <silent>  _p <Plug>TComment_ _p
 xmap <silent>  __ <Plug>TComment_ __
 nmap <silent>  __ <Plug>TComment_ __
+map  sh /start_hereS
 map  sd gg"_dGP
 nnoremap  k :vsplit
 nmap  j :split
@@ -209,18 +209,18 @@ nmap [B <Plug>(unimpaired-bfirst)
 nmap [b <Plug>(unimpaired-bprevious)
 nmap [A <Plug>(unimpaired-first)
 nmap [a <Plug>(unimpaired-previous)
-omap <silent> \__ <Plug>TComment_\__
-smap <silent> \__ <Plug>TComment_\__
-nmap <silent> \__ <Plug>TComment_\__
-xmap <silent> \__ <Plug>TComment_\__
-map <silent> \_p <Plug>TComment_\_p
-map <silent> \_  <Plug>TComment_\_ 
-xmap <silent> \_i <Plug>TComment_\_i
-map <silent> \_r <Plug>TComment_\_r
-map <silent> \_b <Plug>TComment_\_b
-map <silent> \_a <Plug>TComment_\_a
-map <silent> \_n <Plug>TComment_\_n
 map <silent> \_s <Plug>TComment_\_s
+map <silent> \_n <Plug>TComment_\_n
+map <silent> \_a <Plug>TComment_\_a
+map <silent> \_b <Plug>TComment_\_b
+map <silent> \_r <Plug>TComment_\_r
+xmap <silent> \_i <Plug>TComment_\_i
+map <silent> \_  <Plug>TComment_\_ 
+map <silent> \_p <Plug>TComment_\_p
+xmap <silent> \__ <Plug>TComment_\__
+nmap <silent> \__ <Plug>TComment_\__
+smap <silent> \__ <Plug>TComment_\__
+omap <silent> \__ <Plug>TComment_\__
 nmap ]xx <Plug>(unimpaired-xml-decode-line)
 xmap ]x <Plug>(unimpaired-xml-decode)
 nmap ]x <Plug>(unimpaired-xml-decode)
@@ -294,64 +294,64 @@ nmap <silent> gc <Plug>TComment_gc
 omap <silent> ic <Plug>TComment_ic
 vmap <silent> ic <Plug>TComment_ic
 nmap yo <Plug>(unimpaired-toggle)
-nnoremap <silent> <Plug>(-fzf-complete-finish) a
-nnoremap <Plug>(-fzf-:) :
-nnoremap <Plug>(-fzf-/) /
-nnoremap <Plug>(-fzf-vim-do) :execute g:__fzf_command
-nnoremap <C-B> :w | !python3 % < input > output 2>&1
-nmap <silent> <C-_>9 <Plug>TComment_9
-nmap <silent> <C-_>8 <Plug>TComment_8
-nmap <silent> <C-_>7 <Plug>TComment_7
-nmap <silent> <C-_>6 <Plug>TComment_6
-nmap <silent> <C-_>5 <Plug>TComment_5
-nmap <silent> <C-_>4 <Plug>TComment_4
-nmap <silent> <C-_>3 <Plug>TComment_3
-nmap <silent> <C-_>2 <Plug>TComment_2
-nmap <silent> <C-_>1 <Plug>TComment_1
-nmap <silent> <C-_><C-_> <Plug>TComment_
-nnoremap <Plug>TComment_<C-_>9 :call tcomment#SetOption("count", 9)
-nnoremap <Plug>TComment_9 :call tcomment#SetOption("count", 9)
-nnoremap <Plug>TComment_<C-_>8 :call tcomment#SetOption("count", 8)
-nnoremap <Plug>TComment_8 :call tcomment#SetOption("count", 8)
-nnoremap <Plug>TComment_<C-_>7 :call tcomment#SetOption("count", 7)
-nnoremap <Plug>TComment_7 :call tcomment#SetOption("count", 7)
-nnoremap <Plug>TComment_<C-_>6 :call tcomment#SetOption("count", 6)
-nnoremap <Plug>TComment_6 :call tcomment#SetOption("count", 6)
-nnoremap <Plug>TComment_<C-_>5 :call tcomment#SetOption("count", 5)
-nnoremap <Plug>TComment_5 :call tcomment#SetOption("count", 5)
-nnoremap <Plug>TComment_<C-_>4 :call tcomment#SetOption("count", 4)
-nnoremap <Plug>TComment_4 :call tcomment#SetOption("count", 4)
-nnoremap <Plug>TComment_<C-_>3 :call tcomment#SetOption("count", 3)
-nnoremap <Plug>TComment_3 :call tcomment#SetOption("count", 3)
-nnoremap <Plug>TComment_<C-_>2 :call tcomment#SetOption("count", 2)
-nnoremap <Plug>TComment_2 :call tcomment#SetOption("count", 2)
-nnoremap <Plug>TComment_<C-_>1 :call tcomment#SetOption("count", 1)
-nnoremap <Plug>TComment_1 :call tcomment#SetOption("count", 1)
-snoremap <Plug>TComment_ __ :TComment
-onoremap <Plug>TComment_ __ :TComment
+nnoremap <SNR>39_: :=v:count ? v:count : ''
+nnoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %
+nnoremap <silent> <F25> :doautocmd <nomodeline> FocusGained %
+onoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %
+onoremap <silent> <F25> :silent doautocmd <nomodeline> FocusGained %
+vnoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %gv
+vnoremap <silent> <F25> :silent doautocmd <nomodeline> FocusGained %gv
+tnoremap <silent> <F24> :silent doautocmd FocusLost %
+tnoremap <silent> <F25> :silent doautocmd FocusGained %
+noremap <Plug>TComment_\_s :TCommentAs =&ft_
+noremap <Plug>TComment_\_n :TCommentAs =&ft 
+noremap <Plug>TComment_\_a :TCommentAs 
+noremap <Plug>TComment_\_b :TCommentBlock
+noremap <Plug>TComment_\_r :TCommentRight
+xnoremap <Plug>TComment_\_i :TCommentInline
+noremap <Plug>TComment_\_  :TComment 
+noremap <Plug>TComment_\_p vip:TComment
+xnoremap <Plug>TComment_\__ :TCommentMaybeInline
+nnoremap <Plug>TComment_\__ :TComment
+snoremap <Plug>TComment_\__ :TComment
+onoremap <Plug>TComment_\__ :TComment
 nnoremap <Plug>TComment_<C-_><C-_> :TComment
 nnoremap <Plug>TComment_ :TComment
-onoremap <Plug>TComment_\__ :TComment
-snoremap <Plug>TComment_\__ :TComment
-nnoremap <Plug>TComment_\__ :TComment
-xnoremap <Plug>TComment_\__ :TCommentMaybeInline
-noremap <Plug>TComment_\_p vip:TComment
-noremap <Plug>TComment_\_  :TComment 
-xnoremap <Plug>TComment_\_i :TCommentInline
-noremap <Plug>TComment_\_r :TCommentRight
-noremap <Plug>TComment_\_b :TCommentBlock
-noremap <Plug>TComment_\_a :TCommentAs 
-noremap <Plug>TComment_\_n :TCommentAs =&ft 
-noremap <Plug>TComment_\_s :TCommentAs =&ft_
-tnoremap <silent> <F25> :silent doautocmd FocusGained %
-tnoremap <silent> <F24> :silent doautocmd FocusLost %
-vnoremap <silent> <F25> :silent doautocmd <nomodeline> FocusGained %gv
-vnoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %gv
-onoremap <silent> <F25> :silent doautocmd <nomodeline> FocusGained %
-onoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %
-nnoremap <silent> <F25> :doautocmd <nomodeline> FocusGained %
-nnoremap <silent> <F24> :silent doautocmd <nomodeline> FocusLost %
-nnoremap <SNR>39_: :=v:count ? v:count : ''
+onoremap <Plug>TComment_ __ :TComment
+snoremap <Plug>TComment_ __ :TComment
+nnoremap <Plug>TComment_<C-_>1 :call tcomment#SetOption("count", 1)
+nnoremap <Plug>TComment_1 :call tcomment#SetOption("count", 1)
+nnoremap <Plug>TComment_<C-_>2 :call tcomment#SetOption("count", 2)
+nnoremap <Plug>TComment_2 :call tcomment#SetOption("count", 2)
+nnoremap <Plug>TComment_<C-_>3 :call tcomment#SetOption("count", 3)
+nnoremap <Plug>TComment_3 :call tcomment#SetOption("count", 3)
+nnoremap <Plug>TComment_<C-_>4 :call tcomment#SetOption("count", 4)
+nnoremap <Plug>TComment_4 :call tcomment#SetOption("count", 4)
+nnoremap <Plug>TComment_<C-_>5 :call tcomment#SetOption("count", 5)
+nnoremap <Plug>TComment_5 :call tcomment#SetOption("count", 5)
+nnoremap <Plug>TComment_<C-_>6 :call tcomment#SetOption("count", 6)
+nnoremap <Plug>TComment_6 :call tcomment#SetOption("count", 6)
+nnoremap <Plug>TComment_<C-_>7 :call tcomment#SetOption("count", 7)
+nnoremap <Plug>TComment_7 :call tcomment#SetOption("count", 7)
+nnoremap <Plug>TComment_<C-_>8 :call tcomment#SetOption("count", 8)
+nnoremap <Plug>TComment_8 :call tcomment#SetOption("count", 8)
+nnoremap <Plug>TComment_<C-_>9 :call tcomment#SetOption("count", 9)
+nnoremap <Plug>TComment_9 :call tcomment#SetOption("count", 9)
+nmap <silent> <C-_><C-_> <Plug>TComment_
+nmap <silent> <C-_>1 <Plug>TComment_1
+nmap <silent> <C-_>2 <Plug>TComment_2
+nmap <silent> <C-_>3 <Plug>TComment_3
+nmap <silent> <C-_>4 <Plug>TComment_4
+nmap <silent> <C-_>5 <Plug>TComment_5
+nmap <silent> <C-_>6 <Plug>TComment_6
+nmap <silent> <C-_>7 <Plug>TComment_7
+nmap <silent> <C-_>8 <Plug>TComment_8
+nmap <silent> <C-_>9 <Plug>TComment_9
+nnoremap <C-B> :w | !python3 % < input > output 2>&1
+nnoremap <Plug>(-fzf-vim-do) :execute g:__fzf_command
+nnoremap <Plug>(-fzf-/) /
+nnoremap <Plug>(-fzf-:) :
+nnoremap <silent> <Plug>(-fzf-complete-finish) a
 nnoremap <silent> <Plug>(YCMFindSymbolInDocument) :call youcompleteme#finder#FindSymbol( 'document' )
 nnoremap <silent> <Plug>(YCMFindSymbolInWorkspace) :call youcompleteme#finder#FindSymbol( 'workspace' )
 nnoremap <SNR>40_: :=v:count ? v:count : ''
@@ -576,6 +576,7 @@ set clipboard=unnamed
 set comments=b:#,fb:-
 set commentstring=#\ %s
 set completeopt=preview,menuone
+set cpoptions=aAceFsB
 set directory=~/.cache/vim/swap//
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
@@ -616,18 +617,16 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +25 sol.cpp
+badd +1 sol.cpp
 badd +27 sol.py
 badd +1 input
 badd +1 output
 badd +11 Solution.java
 badd +1 sol.kts
 badd +250 ~/.vimrc
-badd +47 templates/template.cpp
-badd +27 templates/template.py
 argglobal
 %argdel
-edit templates/template.py
+edit sol.py
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -649,12 +648,12 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 94 + 94) / 189)
-exe '2resize ' . ((&lines * 21 + 22) / 45)
+exe '2resize ' . ((&lines * 23 + 24) / 48)
 exe 'vert 2resize ' . ((&columns * 94 + 94) / 189)
-exe '3resize ' . ((&lines * 21 + 22) / 45)
+exe '3resize ' . ((&lines * 22 + 24) / 48)
 exe 'vert 3resize ' . ((&columns * 94 + 94) / 189)
 argglobal
-balt templates/template.cpp
+balt sol.cpp
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -715,7 +714,7 @@ setlocal imsearch=-1
 setlocal include=^\\s*\\(from\\|import\\)
 setlocal includeexpr=substitute(substitute(substitute(v:fname,b:grandparent_match,b:grandparent_sub,''),b:parent_match,b:parent_sub,''),b:child_match,b:child_sub,'g')
 setlocal indentexpr=GetPythonIndent(v:lnum)
-setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e,<:>,=elif,=except
+setlocal indentkeys=0{,0},0),0],:,!^F,o,O,e,<:>,=elif,=except
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=python3\ -m\ pydoc
@@ -764,7 +763,7 @@ setlocal synmaxcol=3000
 if &syntax != 'python'
 setlocal syntax=python
 endif
-setlocal tabstop=2
+setlocal tabstop=4
 setlocal tagcase=
 setlocal tagfunc=
 setlocal tags=
@@ -787,12 +786,12 @@ setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 30 - ((29 * winheight(0) + 21) / 43)
+let s:l = 1 - ((0 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 30
-normal! 03|
+keepjumps 1
+normal! 0
 wincmd w
 argglobal
 if bufexists("input") | buffer input | else | edit input | endif
@@ -929,7 +928,7 @@ setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 10) / 21)
+let s:l = 1 - ((0 * winheight(0) + 11) / 23)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -1071,7 +1070,7 @@ setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 10) / 21)
+let s:l = 1 - ((0 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -1079,9 +1078,9 @@ keepjumps 1
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 94 + 94) / 189)
-exe '2resize ' . ((&lines * 21 + 22) / 45)
+exe '2resize ' . ((&lines * 23 + 24) / 48)
 exe 'vert 2resize ' . ((&columns * 94 + 94) / 189)
-exe '3resize ' . ((&lines * 21 + 22) / 45)
+exe '3resize ' . ((&lines * 22 + 24) / 48)
 exe 'vert 3resize ' . ((&columns * 94 + 94) / 189)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
