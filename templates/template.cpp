@@ -3,10 +3,12 @@ using namespace std;
 #define ll long long
 #define ld long double
 #define endl "\n"
-#define debug(x) cout << #x << " = " << (x) << endl;
+#define dd(x) cout << #x << " = " << (x) << endl;
 
-// UTIL
- 
+#define all(x) (x).begin(), (x).end()
+#define YES cout << "YES" << endl;
+#define NO cout << "NO" << endl; return;
+
 template<class T>
 ostream& operator<<(ostream& os, vector<T> v) {
   cout << "[";
@@ -31,17 +33,38 @@ ostream& operator<<(ostream& os, map<K, V> m) {
   return os;
 }
 
-// ALGOS
+template <typename V>
+ostream& operator<<(ostream& os, set<V> s) {
+  cout << "{";
+  for (auto i: s) cout << i << ", " << endl;
+  cout << "}";
+  return os;
+}
+
+template <typename V>
+ostream& operator<<(ostream& os, multiset<V> s) {
+  cout << "{";
+  for (auto i: s) cout << i << ", " << endl;
+  cout << "}";
+  return os;
+}
 
 int dx[] = {-1, 0, 0, 1}, dy[] = {0, 1, -1, 0};
 
-// -1 if prime, 0 if a^2 divides n, (-1)^k if k distinct primes
-vector<int> mobius(int n) { vector<int> mob(n + 1, 0); mob[1] = 1; for (int i = 1; i <= n; ++i) for (int j = i + i; j <= n; j += i) mob[j] -= mob[i]; return mob; }
-
-
-// Go 
 int INF = INT_MAX;
 const ll MOD = 1000000007;
+// const ll MOD = 998244353;
+
+ll power(ll a, ll p, ll mod=MOD) {
+  ll res = 1;
+  while (p) {
+    if (p & 1) res = (res * a) % mod;
+      p >>= 1;
+      a = (a * a) % mod;
+  }
+  return res;
+}
+
 
 void solve() {
   start_here
@@ -57,8 +80,3 @@ int main() {
     solve();
   }
 }
-/* Check long long
- * Facts and data representation
- * Constructive? Top bottom up down
- */
- 
