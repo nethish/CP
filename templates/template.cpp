@@ -1,5 +1,23 @@
-#include<bits/stdc++.h>
+#include <algorithm>
+#include <array>
+#include <bitset>
+#include <cassert>
+#include <chrono>
+#include <climits>
+#include <cmath>
+#include <complex>
+#include <cstring>
+#include <functional>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <random>
+#include <set>
+#include <unordered_set>
 using namespace std;
+
 #define ll long long
 #define ld long double
 #define endl "\n"
@@ -12,7 +30,7 @@ using namespace std;
 template<class T>
 ostream& operator<<(ostream& os, vector<T> v) {
   cout << "[";
-  for(auto &i: v) cout << i << ", ";
+  for(auto i: v) cout << i << ", ";
   cout << "]" << endl;
   return os;
 }
