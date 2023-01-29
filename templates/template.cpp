@@ -44,7 +44,7 @@ ostream& operator<<(ostream& os, pair<K, V> p) {
 template <typename K, typename V>
 ostream& operator<<(ostream& os, map<K, V> m) {
   cout << "{";
-  for (auto i = m.begin(); i != m.end(); ++i) {
+  for (auto &i: m) {
     cout << "[" << i.first << ": " << i.second << "]";
   }
   cout << "}";
